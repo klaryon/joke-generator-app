@@ -1,3 +1,10 @@
+# Joke Generator 
+Let's create a joke generator app with React. We will create our own custom hook and use { useRef } hook.
+
+## API
+
+http://www.icndb.com/api/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
