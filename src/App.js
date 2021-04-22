@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./App.css";
 import useRandomJoke from "./useRandomJoke";
 
 function App() {
-  const joke = useRandomJoke("Klary", "On");
+  const firstNameRef = useRef(null);
+  const lastNameRef = useRef(null);
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState("Klary");
+  const [lastName, setLastName] = useState("On");
 
-  // Custom Hook
-  // const joke = useRandomJoke('Klary', 'On');
+  const joke = useRandomJoke(firstName, lastName);
 
+  const generateJoke = (e) => {
+    e.preventDefault();
+
+    setFirstName(firstNameRef.current.value);
+    setLastName(lastNameRef.current.value);
+  };
   return (
     <div className="app">
       <center>
@@ -19,15 +25,17 @@ function App() {
         <form>
           <input
             placeholder="first name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            ref={firstNameRef}
+            // value={firstName}
+            // onChange={(e) => setFirstName(e.target.value)}
           />
           <input
             placeholder="last name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            ref={lastNameRef}
+            // value={lastName}
+            // onChange={(e) => setLastName(e.target.value)}
           />
-          <button>Generate Joke</button>
+          <button onClick={generateJoke}>Generate Joke</button>
         </form>
       </center>
     </div>
